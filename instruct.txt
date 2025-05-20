@@ -1,0 +1,14 @@
+多显卡训练
+设置需要训练的显卡 export CUDA_VISIBLE_DEVICES=4,5,6,7
+运行训练脚本 ./tools/dist_train.sh configs/pointpillars/pointpillars_hv_secfpn_sbn-all_16xb2-2x_waymoD5-3d-3class_hp.py 4
+--resume 指定恢复的checkpoint
+--out  指定输出的Log、模型文件的路径
+
+
+CUDA_VISIBLE_DEVICES=4,5,6,7 ./tools/dist_train.sh configs/pointpillars/pointpillars_hv_secfpn_sbn-all_4xb4-2x_waymoD5-3d-3class_change.py 4
+
+CUDA_VISIBLE_DEVICES=4,5,6,7 ./tools/dist_train.sh configs/pointpillars/pointpillars_waymo_new.py 4
+
+python demo/pcd_demo.py data/wxwc3k/training/bin/2024-05-08-15-33-35-416.bin  work_dirs/pointpillars_voxel_size_0.25_30/pointpillars_voxel_size_0.25_30.py work_dirs/pointpillars_voxel_size_0.25_30/epoch_58.pth --show
+
+python tools/train.py configs/centerpoint/centerpoint_voxel01_second_secfpn_8xb4-cyclic-20e_wxwc-3d.py
